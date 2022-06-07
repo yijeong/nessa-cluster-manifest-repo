@@ -36,7 +36,7 @@ jobs:
           token: ${{ env.GIT_ACCESS_TOKEN }}
       # hpa def 파일에서 cpu util 변경
       - name: CPUUtil Change
-        uses: mikefarah/yq@v3.4.1
+        uses: mikefarah/yq@v3.3.4
         with:
           cmd: yq e --inplace '.spec.targetCPUUtilizationPercentage = ${{ env.CPU_UTIL }}' flask/flask-hpa.yaml
 
