@@ -1,0 +1,59 @@
+name: custom-cpu-util
+on:
+  workflow_dispatch:
+    inputs:
+      user_name:
+        description: 'User Name'
+        required: true
+      service_name:
+        description: 'Service Name'
+        required: true
+      comment:
+        description: 'Comment'
+        required: true
+      cpuutil:
+        description: 'CPU Util Percentage'
+        required: true
+
+jobs:
+  customize:
+    runs-on: ubuntu-latest
+    env:
+      cpuutil: ${{ github.event.inputs.cpuutil }}
+      GIT_ACCESS_TOKEN: ${{ secrets.ACTION_ACCESS_TOKEN }}
+      HASH: ${{ github.sha }}
+
+    steps:
+      # hpa def 파일에서 cpu util 변경
+      - name: CPUUtil Change
+        uses: mikefarah/yq@v4.9.6
+        with:
+          cmd: yq e --inplace '.spec.targetCPUUtilizationPercentage = "${{ env.cpuutil }}"' flask/flask-hpa.yaml
+
+      - name: Yaml Check
+        run: |
+          cat flask/flask-hpa.yaml
+
+      # main으로 merge 하는 pull request 생성
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ env.GIT_ACCESS_TOKEN }}
+          commit-message: 'deploy: eks-nessa-flask-${{ env.HASH }}'
+          base: main
+          branch: eks-nessa-flask-${{ env.HASH }}
+          title: '[Deploy] eks-nessa-flask'
+          body: |
+            # Deploy To nessa cluster
+            ## Git Hash
+            - *${{ env.HASH }}*
+            ## New CPU Util
+            - *${{ env.cpuutil }}*
+          labels: |
+            automerge
+      
+
+
+
+
