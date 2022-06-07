@@ -25,11 +25,11 @@ jobs:
 
     steps:
       - name: Clone Deploy repository
-          uses: actions/checkout@v2
-          with:
-            repository: yijeong/nessa-cluster-manifest-repo
-            ref: 'main'
-            token: ${{ env.GIT_ACCESS_TOKEN }}
+        uses: actions/checkout@v2
+        with:
+          repository: yijeong/nessa-cluster-manifest-repo
+          ref: 'main'
+          token: ${{ env.GIT_ACCESS_TOKEN }}
       # hpa def 파일에서 cpu util 변경
       - name: CPUUtil Change
         uses: mikefarah/yq@v4.9.6
