@@ -1,4 +1,3 @@
----
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
@@ -11,4 +10,4 @@ spec:
     name: demo-flask-backend
   minReplicas: 1
   maxReplicas: 5
-  targetCPUUtilizationPercentage: 30
+  targetCPUUtilizationPercentage: "50"
