@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +16,7 @@ spec:
     spec:
       containers:
         - name: demo-frontend
-          image: 684231376422.dkr.ecr.ap-northeast-2.amazonaws.com/demo-frontend:108ea5c5
+          image: 684231376422.dkr.ecr.ap-northeast-2.amazonaws.com/demo-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
