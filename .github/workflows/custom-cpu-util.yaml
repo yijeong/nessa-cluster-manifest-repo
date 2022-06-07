@@ -25,6 +25,9 @@ jobs:
       HASH: ${{ github.sha }}
 
     steps:
+      - name: Version Check
+        run: |
+          echo $CPU_UTIL start!
       - name: Clone Deploy repository
         uses: actions/checkout@v2
         with:
