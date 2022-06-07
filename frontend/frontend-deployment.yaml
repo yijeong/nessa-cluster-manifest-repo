@@ -16,7 +16,11 @@ spec:
     spec:
       containers:
         - name: demo-frontend
+<<<<<<< HEAD
           image: 684231376422.dkr.ecr.ap-northeast-2.amazonaws.com/demo-frontend:latest
+=======
+          image: 684231376422.dkr.ecr.ap-northeast-2.amazonaws.com/demo-frontend:c3b95012
+>>>>>>> 042929b6e20cdaf2275566f48c300ded2714c483
           imagePullPolicy: Always
           ports:
             - containerPort: 80
