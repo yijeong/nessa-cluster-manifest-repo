@@ -34,7 +34,7 @@ jobs:
       - name: CPUUtil Change
         uses: mikefarah/yq@v4.9.6
         with:
-          cmd: yq e --inplace '.spec.targetCPUUtilizationPercentage = "${{ env.cpuutil }}"' flask/flask-hpa.yaml
+          cmd: yq e --inplace '.spec.targetCPUUtilizationPercentage = ${{ env.cpuutil }}' flask/flask-hpa.yaml
 
       - name: Yaml Check
         run: |
