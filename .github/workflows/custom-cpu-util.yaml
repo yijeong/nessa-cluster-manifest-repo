@@ -44,7 +44,7 @@ jobs:
         if: ${{ env.CPU_UTIL < 20 }}
         run: |
           echo too small number. please input bigger than 20 
-          exit 
+          exit 1
 
       - name: Clone Deploy repository
         uses: actions/checkout@v2
