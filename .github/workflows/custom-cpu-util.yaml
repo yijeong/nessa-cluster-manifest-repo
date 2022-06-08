@@ -12,7 +12,7 @@ on:
         description: 'Comment'
         required: true
       cpuutil:
-        description: 'CPU Util Percentage'
+        description: 'CPU Util Percentage (>= 20)'
         required: true
         type: number
 
@@ -25,9 +25,27 @@ jobs:
       HASH: ${{ github.sha }}
 
     steps:
-      - name: Version Check
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: HH:mm
+          utcOffset: '+09:00'
+
+      - name: input value Check (success)
+        if: ${{ env.CPU_UTIL >= 20 }}
         run: |
-          echo $CPU_UTIL start!
+          echo $CPU_UTIL will be set on hpa as targetCPUUtilizationPercentage!
+
+      - name: input value Check (fail)
+        if: ${{ env.CPU_UTIL < 20 }}
+        run: |
+          echo too small number. please input bigger than 20 
+          exit 
+
       - name: Clone Deploy repository
         uses: actions/checkout@v2
         with:
