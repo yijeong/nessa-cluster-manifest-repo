@@ -12,9 +12,8 @@ on:
         description: 'Comment'
         required: true
       cpuutil:
-        description: 'CPU Util Percentage (>= 20)'
+        description: 'Target CPU Util (should be >= 20)'
         required: true
-        type: number
 
 jobs:
   customize:
