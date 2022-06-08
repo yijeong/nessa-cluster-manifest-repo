@@ -59,7 +59,7 @@ jobs:
             ## Git Hash
             - *${{ env.HASH }}*
             ## New CPU Util
-            - *${{ env.cpuutil }}*
+            - *${{ env.CPU_UTIL }}*
           labels: |
             automerge
       
