@@ -44,16 +44,16 @@ jobs:
           format: HH:mm
           utcOffset: '+09:00'
 
-      - name: input value Check 1 (success)
-        if: ${{ env.CPU_UTIL >= 20 }}
-        run: |
-          echo $CPU_UTIL will be set on hpa as targetCPUUtilizationPercentage!
-
-      - name: input value Check 2 (fail)
-        if: ${{ env.CPU_UTIL < 20 }}
-        run: |
-          echo too small number. please input bigger than 20 
-          exit 1
+#      - name: input value Check 1 (success)
+#        if: ${{ env.CPU_UTIL >= 20 }}
+#        run: |
+#          echo $CPU_UTIL will be set on hpa as targetCPUUtilizationPercentage!
+#
+#      - name: input value Check 2 (fail)
+#        if: ${{ env.CPU_UTIL < 20 }}
+#        run: |
+#          echo too small number. please input bigger than 20
+#          exit 1
 
       - name: Clone Deploy repository
         uses: actions/checkout@v2
