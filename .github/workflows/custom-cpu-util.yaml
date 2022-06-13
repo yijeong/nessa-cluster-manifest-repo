@@ -55,12 +55,6 @@ jobs:
           echo too small number. please input bigger than 20 
           exit 1
 
-      - name: input value Check 3 (integer)
-        if: endsWith('Hello world', 'ld')
-        run: |
-          echo too small number. please input bigger than 20 
-          exit 1
-
       - name: Clone Deploy repository
         uses: actions/checkout@v2
         with:
