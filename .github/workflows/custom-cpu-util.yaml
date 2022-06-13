@@ -14,6 +14,16 @@ on:
       cpuutil:
         description: 'Target CPU Util (should be >= 20)'
         required: true
+        type: choice
+        options:
+          - 20
+          - 30
+          - 40
+          - 50
+          - 60
+          - 70
+          - 80
+          - 90
 
 jobs:
   customize:
@@ -34,13 +44,19 @@ jobs:
           format: HH:mm
           utcOffset: '+09:00'
 
-      - name: input value Check (success)
+      - name: input value Check 1 (success)
         if: ${{ env.CPU_UTIL >= 20 }}
         run: |
           echo $CPU_UTIL will be set on hpa as targetCPUUtilizationPercentage!
 
-      - name: input value Check (fail)
+      - name: input value Check 2 (fail)
         if: ${{ env.CPU_UTIL < 20 }}
+        run: |
+          echo too small number. please input bigger than 20 
+          exit 1
+
+      - name: input value Check 3 (integer)
+        if: endsWith('Hello world', 'ld')
         run: |
           echo too small number. please input bigger than 20 
           exit 1
